@@ -7,7 +7,14 @@ public class Producto {
 	private double precio;
 	private double precio_total;
 	private int unidades;
+	private int fecha;
 	
+	public int getFecha() {
+		return fecha;
+	}
+	public void setFecha(int fecha) {
+		this.fecha = fecha;
+	}
 	public Producto(String name, String number) {
 		super();
 		this.name = name;

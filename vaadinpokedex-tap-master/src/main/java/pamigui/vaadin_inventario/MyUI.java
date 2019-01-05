@@ -35,6 +35,7 @@ public class MyUI extends UI {
        
     	Grid<Producto> grid = new Grid<Producto>();
     	Grid<Producto> grid2 = new Grid<Producto>();
+    	Grid<Producto> grid3 = new Grid<Producto>();
     	
     	HorizontalLayout horizontalLayout = new HorizontalLayout();
     	VerticalLayout verticalLayout = new VerticalLayout();
@@ -181,11 +182,6 @@ public class MyUI extends UI {
     		grid.setItems(Inventario.getInstance().getProducto());
     		grid2.setItems(Inventario.getInstance().getProducto());
 
-    		
-    		Notification.show("Producto capturado! Ya tenemos " + 
-    				Inventario.getInstance().getProducto().size() + "!!",
-    				Notification.TYPE_TRAY_NOTIFICATION);
-    		
     	});
     	
     	
@@ -204,13 +200,16 @@ public class MyUI extends UI {
         
     	Button comprar = new Button("Comprar");
     	Button vender = new Button("Vender");
-    	Button fabricar = new Button();
-    	
+    	Button insertar = new Button("Inserte la fecha");
+    	TextField textFieldFecha = new TextField();
+    	Label fecha = new Label("Fecha");
     	comprar.addClickListener(e -> {
         	Inventario.getInstance().deleteProductoUno(selectedProducto);
         	//(selectedProducto.getPrecio());
         	grid.setItems(Inventario.getInstance().getProducto());
         	grid2.setItems(Inventario.getInstance().getProducto());
+        	Label fecha2 = new Label("Fecha");
+        	selectedProducto.setFecha(Integer.parseInt(textFieldFecha.getValue()));
         	removeWindow(subWindow1);
         	removeWindow(subWindow);
         	//removeWindow(subWindow2);
@@ -219,7 +218,10 @@ public class MyUI extends UI {
         	Inventario.getInstance().aniadirUno(selectedProducto);
         	grid.setItems(Inventario.getInstance().getProducto());
         	grid2.setItems(Inventario.getInstance().getProducto());
+        	Label fecha1 = new Label("Fecha");
+        	selectedProducto.setFecha(Integer.parseInt(textFieldFecha.getValue()));
         	//(selectedProducto.getPrecio());
+        	textFieldFecha.getValue();
         	removeWindow(subWindow1);
         	removeWindow(subWindow);
         	
@@ -249,7 +251,7 @@ public class MyUI extends UI {
         	labelprecio.setValue(String.valueOf(selectedProducto.getPrecio()));
         	labelUnidades.setValue(String.valueOf(selectedProducto.getUnidades()));
         	
-        	subContent1.addComponents(comprar, vender);
+        	subContent1.addComponents(comprar, vender, insertar,textFieldFecha, fecha);
         	subWindow1.center();
             subWindow1.setContent(subContent1);
         	removeWindow(subWindow1);
@@ -257,8 +259,8 @@ public class MyUI extends UI {
         	
     	});
     	
-    	
-    	
+    	grid3.addColumn(Producto::getPrecio).setCaption("Beneficio");
+    	grid3.addColumn(Producto::getFecha).setCaption("fecha");
     	
     	
     	
@@ -290,7 +292,7 @@ public class MyUI extends UI {
     	//horizontalLayout.addComponents(grid, formLayout);
     	
     	verticalLayout.addComponents(grid, grid2);
-    	verticalLayout1.addComponents(formLayout);
+    	verticalLayout1.addComponents(formLayout, grid3);
     	horizontalLayout.addComponents(verticalLayout, verticalLayout1);
     	
     	setContent(horizontalLayout);
