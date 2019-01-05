@@ -5,6 +5,7 @@ public class Producto {
 	private String name;
 	private String number;
 	private double precio;
+	private double precio_total;
 	private int unidades;
 	
 	public Producto(String name, String number) {
@@ -42,6 +43,12 @@ public class Producto {
 	}
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+	public double getPrecio_total() {
+		return precio_total;
+	}
+	public void setPrecio_total(int unidades, double precio) {
+		this.precio_total = precio * unidades;
 	}
 	
 	

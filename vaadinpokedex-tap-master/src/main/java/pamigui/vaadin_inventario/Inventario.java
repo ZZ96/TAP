@@ -24,6 +24,7 @@ public class Inventario {
 	
 	public void addProducto(Producto p) {
 		inventario.add(p);
+		p.setPrecio_total(p.getUnidades(), p.getPrecio());
 	}
 	
 	public void deleteProducto(Producto p, int prod)
@@ -58,6 +59,7 @@ public class Inventario {
 		p.setNumber(number);
 		p.setName(name);
 		p.setPrecio(precio);
+		p.setPrecio_total(p.getUnidades(), precio);
 	}
 	/*
 	public int buscarProducto(Producto p) {

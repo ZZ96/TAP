@@ -102,7 +102,7 @@ public class MyUI extends UI {
 	        labelDolares.setValue(String.valueOf(selectedProducto.getPrecio()*1.12) + "$");
 	        labelEuros.setValue(String.valueOf(selectedProducto.getPrecio()) + "€");
 	        //removeWindow(subWindow);
-	        subContent.addComponents(labelLibras, labelDolares, labelEuros,labelprecio);
+	        subContent.addComponents(labelLibras, labelDolares, labelEuros);
 	        //addWindow(subWindow2);
         });
       
@@ -128,7 +128,7 @@ public class MyUI extends UI {
     	//grid.addColumn(Producto::getPrecio).setCaption("Precio en $");
     	//grid.addColumn(Producto::getPrecio).setCaption("Precio en £");
     	grid.addColumn(Producto::getUnidades).setCaption("Unidades");
-
+    	grid.addColumn(Producto::getPrecio_total).setCaption("Precio total en €");
     	grid.setSelectionMode(SelectionMode.SINGLE);
     	
     	grid.addItemClickListener(event -> {
