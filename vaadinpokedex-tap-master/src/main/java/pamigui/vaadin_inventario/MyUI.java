@@ -181,7 +181,7 @@ public class MyUI extends UI {
     		
     		grid.setItems(Inventario.getInstance().getProducto());
     		grid2.setItems(Inventario.getInstance().getProducto());
-
+    		//grid3.setItems(Inventario.getInstance().getProducto());
     	});
     	
     	
@@ -210,6 +210,7 @@ public class MyUI extends UI {
         	grid2.setItems(Inventario.getInstance().getProducto());
         	Label fecha2 = new Label("Fecha");
         	selectedProducto.setFecha(Integer.parseInt(textFieldFecha.getValue()));
+        	grid3.setItems(Inventario.getInstance().getProducto());
         	removeWindow(subWindow1);
         	removeWindow(subWindow);
         	//removeWindow(subWindow2);
@@ -221,7 +222,8 @@ public class MyUI extends UI {
         	Label fecha1 = new Label("Fecha");
         	selectedProducto.setFecha(Integer.parseInt(textFieldFecha.getValue()));
         	//(selectedProducto.getPrecio());
-        	textFieldFecha.getValue();
+        	grid3.setItems(Inventario.getInstance().getProducto());
+        	//textFieldFecha.getValue();
         	removeWindow(subWindow1);
         	removeWindow(subWindow);
         	
@@ -261,8 +263,9 @@ public class MyUI extends UI {
     	
     	grid3.addColumn(Producto::getPrecio).setCaption("Beneficio");
     	grid3.addColumn(Producto::getFecha).setCaption("fecha");
-    	
-    	
+    	FormLayout formLayout1 = new FormLayout();
+    	Button buttonFabricar = new Button("Fabricar");
+    	formLayout1.addComponents( buttonFabricar); 
     	
     	
     	
@@ -292,7 +295,7 @@ public class MyUI extends UI {
     	//horizontalLayout.addComponents(grid, formLayout);
     	
     	verticalLayout.addComponents(grid, grid2);
-    	verticalLayout1.addComponents(formLayout, grid3);
+    	verticalLayout1.addComponents(formLayout, formLayout1, grid3);
     	horizontalLayout.addComponents(verticalLayout, verticalLayout1);
     	
     	setContent(horizontalLayout);
