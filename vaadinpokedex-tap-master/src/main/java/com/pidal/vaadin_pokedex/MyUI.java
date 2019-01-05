@@ -47,7 +47,23 @@ public class MyUI extends UI {
         Label labelType = new Label();
         Label labelUnidades = new Label();
         Button buttonDelete = new Button("Delete Producto");
+        Button buttonDeleteUno = new Button("Borrar una unidad");
+        Button buttonModificar = new Button("Modificar Producto");
         
+        buttonDelete.addClickListener(e -> {
+        	Inventario.getInstance().deleteProducto(selectedProducto, 1);
+        	grid.setItems(Inventario.getInstance().getProducto());
+        	removeWindow(subWindow);
+        	
+        });
+        //OJO
+        buttonDeleteUno.addClickListener(e -> {
+        	Inventario.getInstance().deleteProductoUno(selectedProducto);
+        	grid.setItems(Inventario.getInstance().getProducto());
+        	removeWindow(subWindow);
+        	
+        });
+        //OJO
         buttonDelete.addClickListener(e -> {
         	Inventario.getInstance().deleteProducto(selectedProducto, 1);
         	grid.setItems(Inventario.getInstance().getProducto());
@@ -56,7 +72,7 @@ public class MyUI extends UI {
         });
         
       
-        subContent.addComponents(labelNumber, labelName, labelType, labelUnidades, buttonDelete);
+        subContent.addComponents(labelNumber, labelName, labelType, labelUnidades, buttonDelete, buttonDeleteUno);
         
         
         subWindow.center();
@@ -84,7 +100,7 @@ public class MyUI extends UI {
         	labelNumber.setValue(selectedProducto.getNumber());
         	labelName.setValue(selectedProducto.getName());
         	labelType.setValue(selectedProducto.getType());
-        	//labelUnidades.setValue(String.valueOf(selectedProducto.getUnidades()));
+        	labelUnidades.setValue(String.valueOf(selectedProducto.getUnidades()));
         	
         	removeWindow(subWindow);
         	addWindow(subWindow);

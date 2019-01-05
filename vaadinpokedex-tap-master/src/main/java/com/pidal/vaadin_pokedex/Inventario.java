@@ -27,23 +27,31 @@ public class Inventario {
 	}
 	
 	public void deleteProducto(Producto p, int prod)
-	{/*
-		int contadorUni=inventario.get(prod).getUnidades();
+	{
+		inventario.remove(p);
+	}
+	
+	public void deleteProductoUno(Producto p)
+	{
+		int contadorUni=p.getUnidades();
 		if(contadorUni==1) {
 			inventario.remove(p);
 		}
 		else if(contadorUni>1){
 			contadorUni--;
 			p.setUnidades(contadorUni);
-		}*/
-		inventario.remove(p);
+		}
+		//inventario.remove(p);
 	}
+	
+	
 	
 	public List<Producto> getProducto() {
 		return inventario;
 	}
-	
-	public ArrayList<Producto> buscarProducto(String buscar) {
+	/*
+	public int buscarProducto(Producto p) {
+		p.g
 		ArrayList<Producto> productobuscado = new ArrayList<Producto>();
 		for(int i=0; i<inventario.size();i++) {
 			if((inventario.get(i).getName().contains(buscar))||
@@ -62,6 +70,27 @@ public class Inventario {
 		
 		return productobuscado;
 	}
+	
+	
+	/*public ArrayList<Producto> buscarProducto(String buscar) {
+		ArrayList<Producto> productobuscado = new ArrayList<Producto>();
+		for(int i=0; i<inventario.size();i++) {
+			if((inventario.get(i).getName().contains(buscar))||
+					(inventario.get(i).getNumber().contains(buscar))||
+					(inventario.get(i).getType().contains(buscar)))
+			{
+				productobuscado.add(inventario.get(i));
+				setMetodoVisualizar(new Lista());
+				metodoVisualizar.visualizar(productobuscado);
+			}
+			
+		}
+		if(productobuscado.size()==0) {
+			System.out.println("Vaya, no tienes este producto en el inventario");
+		}
+		
+		return productobuscado;
+	}*/
 	public void setMetodoVisualizar(MetodoVisualizar metodoVisualizar) {
 		this.metodoVisualizar = metodoVisualizar;
 	}
