@@ -1,4 +1,4 @@
-package com.pidal.vaadin_pokedex;
+package pamigui.vaadin_inventario;
 
 import java.util.ArrayList;
 import java.util.List;

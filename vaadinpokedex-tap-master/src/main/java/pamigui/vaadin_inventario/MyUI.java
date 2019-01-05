@@ -1,4 +1,4 @@
-package com.pidal.vaadin_pokedex;
+package pamigui.vaadin_inventario;
 
 import javax.servlet.annotation.WebServlet;
 
