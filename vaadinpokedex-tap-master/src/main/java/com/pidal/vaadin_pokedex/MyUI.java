@@ -28,34 +28,35 @@ import com.vaadin.ui.Window;
 @Theme("mytheme")
 public class MyUI extends UI {
 
-	private Producto selectedPokemon; 
+	private Producto selectedProducto; 
 	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-       /*
-    	Grid<Pokemon> grid = new Grid<Pokemon>();
+       
+    	Grid<Producto> grid = new Grid<Producto>();
     	
     	HorizontalLayout horizontalLayout = new HorizontalLayout();
     	
     	 //VENTANA DETALLE 
     	
-    	Window subWindow = new Window("Pokemon details");
+    	Window subWindow = new Window("Producto details");
         VerticalLayout subContent = new VerticalLayout();
         
         Label labelNumber = new Label();
         Label labelName = new Label();
         Label labelType = new Label();
-        Button buttonDelete = new Button("Delete pokemon");
+        Label labelUnidades = new Label();
+        Button buttonDelete = new Button("Delete Producto");
         
         buttonDelete.addClickListener(e -> {
-        	Pokedex.getInstance().deletePokemon(selectedPokemon);
-        	grid.setItems(Pokedex.getInstance().getPokemons());
+        	Inventario.getInstance().deleteProducto(selectedProducto, 1);
+        	grid.setItems(Inventario.getInstance().getProducto());
         	removeWindow(subWindow);
         	
         });
         
       
-        subContent.addComponents(labelNumber, labelName, labelType, buttonDelete);
+        subContent.addComponents(labelNumber, labelName, labelType, labelUnidades, buttonDelete);
         
         
         subWindow.center();
@@ -68,20 +69,22 @@ public class MyUI extends UI {
     	// TABLE 
     	
     	
-    	grid.addColumn(Pokemon::getNumber).setCaption("Number");
-    	grid.addColumn(Pokemon::getName).setCaption("Name");
-    	grid.addColumn(Pokemon::getType).setCaption("Type");
+    	grid.addColumn(Producto::getNumber).setCaption("Number");
+    	grid.addColumn(Producto::getName).setCaption("Name");
+    	grid.addColumn(Producto::getType).setCaption("Type");
+    	grid.addColumn(Producto::getUnidades).setCaption("Unidades");
+
     	grid.setSelectionMode(SelectionMode.SINGLE);
     	
     	grid.addItemClickListener(event -> {
     		
-    		selectedPokemon = event.getItem();
+    		selectedProducto = event.getItem();
     		
         	// Notification.show("Value: " + event.getItem());
-        	labelNumber.setValue(selectedPokemon.getNumber());
-        	labelName.setValue(selectedPokemon.getName());
-        	labelType.setValue(selectedPokemon.getType());
-        	
+        	labelNumber.setValue(selectedProducto.getNumber());
+        	labelName.setValue(selectedProducto.getName());
+        	labelType.setValue(selectedProducto.getType());
+        	//labelUnidades.setValue(String.valueOf(selectedProducto.getUnidades()));
         	
         	removeWindow(subWindow);
         	addWindow(subWindow);
@@ -97,28 +100,31 @@ public class MyUI extends UI {
     	TextField textFieldNumber = new TextField("Number");
     	TextField textFieldName = new TextField("Name");
     	TextField textFieldType = new TextField("Type");
-    	Button buttonAddPokemon = new Button("Añadir");
+    	TextField textFieldUnidades = new TextField("Unidades");
+    	Button buttonAddProducto = new Button("Añadir");
     	
 
-    	buttonAddPokemon.addClickListener(e -> {
+    	buttonAddProducto.addClickListener(e -> {
     		
-    		Pokemon p = new Pokemon(
+    		Producto p = new Producto(
     				textFieldNumber.getValue(),
     				textFieldName.getValue(),
-    				textFieldType.getValue()
+    				textFieldType.getValue(),
+    				Integer.parseInt(textFieldUnidades.getValue())
     				);
     		
-    		Pokedex.getInstance().addPokemon(p);
+    		Inventario.getInstance().addProducto(p);
     		
     		textFieldNumber.clear();
     		textFieldName.clear();
     		textFieldType.clear();
+    		textFieldUnidades.clear();
     		
-    		grid.setItems(Pokedex.getInstance().getPokemons());
+    		grid.setItems(Inventario.getInstance().getProducto());
     		
     		
-    		Notification.show("Pokemon capturado! Ya tenemos " + 
-    				Pokedex.getInstance().getPokemons().size() + "!!",
+    		Notification.show("Producto capturado! Ya tenemos " + 
+    				Inventario.getInstance().getProducto().size() + "!!",
     				Notification.TYPE_TRAY_NOTIFICATION);
     		
     	});
@@ -129,8 +135,9 @@ public class MyUI extends UI {
     	formLayout.addComponents(
     			textFieldNumber, 
     			textFieldName, 
-    			textFieldType, 
-    			buttonAddPokemon
+    			textFieldType,
+    			textFieldUnidades,
+    			buttonAddProducto
     	);
     	
     
@@ -140,7 +147,7 @@ public class MyUI extends UI {
     	
     	setContent(horizontalLayout);
     	
-    	*/
+    	
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

@@ -27,7 +27,7 @@ public class Inventario {
 	}
 	
 	public void deleteProducto(Producto p, int prod)
-	{
+	{/*
 		int contadorUni=inventario.get(prod).getUnidades();
 		if(contadorUni==1) {
 			inventario.remove(p);
@@ -35,10 +35,11 @@ public class Inventario {
 		else if(contadorUni>1){
 			contadorUni--;
 			p.setUnidades(contadorUni);
-		}
+		}*/
+		inventario.remove(p);
 	}
 	
-	public List<Producto> getPokemons() {
+	public List<Producto> getProducto() {
 		return inventario;
 	}
 	
