@@ -41,6 +41,7 @@ public class Inventario {
 		else if(contadorUni>1){
 			contadorUni--;
 			p.setUnidades(contadorUni);
+			p.setPrecio_total(p.getUnidades(), p.getPrecio());
 		}
 	}
 	
@@ -49,6 +50,7 @@ public class Inventario {
 		int contadorUni=p.getUnidades();
 		contadorUni++;
 		p.setUnidades(contadorUni);
+		p.setPrecio_total(p.getUnidades(), p.getPrecio());
 	}
 	
 	public List<Producto> getProducto() {

@@ -34,9 +34,11 @@ public class MyUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
        
     	Grid<Producto> grid = new Grid<Producto>();
+    	Grid<Producto> grid2 = new Grid<Producto>();
     	
     	HorizontalLayout horizontalLayout = new HorizontalLayout();
-    	
+    	VerticalLayout verticalLayout = new VerticalLayout();
+    	VerticalLayout verticalLayout1 = new VerticalLayout();
     	 //VENTANA DETALLE 
     	
     	Window subWindow = new Window("Producto details");
@@ -177,7 +179,8 @@ public class MyUI extends UI {
     		textFieldUnidades.clear();
     		
     		grid.setItems(Inventario.getInstance().getProducto());
-    		
+    		grid2.setItems(Inventario.getInstance().getProducto());
+
     		
     		Notification.show("Producto capturado! Ya tenemos " + 
     				Inventario.getInstance().getProducto().size() + "!!",
@@ -196,10 +199,99 @@ public class MyUI extends UI {
     			buttonAddProducto
     	);
     	
+    	Window subWindow1 = new Window("Producto details");
+        VerticalLayout subContent1 = new VerticalLayout();
+        
+    	Button comprar = new Button("Comprar");
+    	Button vender = new Button("Vender");
+    	Button fabricar = new Button();
+    	
+    	comprar.addClickListener(e -> {
+        	Inventario.getInstance().deleteProductoUno(selectedProducto);
+        	//(selectedProducto.getPrecio());
+        	grid.setItems(Inventario.getInstance().getProducto());
+        	grid2.setItems(Inventario.getInstance().getProducto());
+        	removeWindow(subWindow1);
+        	removeWindow(subWindow);
+        	//removeWindow(subWindow2);
+        });
+    	vender.addClickListener(e -> {
+        	Inventario.getInstance().aniadirUno(selectedProducto);
+        	grid.setItems(Inventario.getInstance().getProducto());
+        	grid2.setItems(Inventario.getInstance().getProducto());
+        	//(selectedProducto.getPrecio());
+        	removeWindow(subWindow1);
+        	removeWindow(subWindow);
+        	
+        });
+    	
+    	grid2.addColumn(Producto::getNumber).setCaption("Number");
+    	grid2.addColumn(Producto::getName).setCaption("Name");
+    	grid2.addColumn(Producto::getPrecio).setCaption("Precio en €");
+    	//gr2id.addColumn(Producto::getPrecio).setCaption("Precio en $");
+    	//gr2id.addColumn(Producto::getPrecio).setCaption("Precio en £");
+    	grid2.addColumn(Producto::getUnidades).setCaption("Unidades");
+    	//grid2.addColumn(Producto::getPrecio_total).setCaption("Precio total en €");
+    	
+    	grid2.setSelectionMode(SelectionMode.SINGLE);
+    	
+    	
+    	grid2.addItemClickListener(even -> {
+    		
+    		selectedProducto = even.getItem();
+    		//Window subWindow1 = new Window("Producto details");
+            //VerticalLayout subContent1 = new VerticalLayout();
+            removeWindow(subWindow);
+            //addWindow(subWindow2);
+        	// Notification.show("Value: " + event.getItem());
+        	labelNumber.setValue(selectedProducto.getNumber());
+        	labelName.setValue(selectedProducto.getName());
+        	labelprecio.setValue(String.valueOf(selectedProducto.getPrecio()));
+        	labelUnidades.setValue(String.valueOf(selectedProducto.getUnidades()));
+        	
+        	subContent1.addComponents(comprar, vender);
+        	subWindow1.center();
+            subWindow1.setContent(subContent1);
+        	removeWindow(subWindow1);
+        	addWindow(subWindow1);
+        	
+    	});
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     
-    	horizontalLayout.addComponents(grid, formLayout);
+    	//horizontalLayout.addComponents(grid, formLayout);
     	
-    	
+    	verticalLayout.addComponents(grid, grid2);
+    	verticalLayout1.addComponents(formLayout);
+    	horizontalLayout.addComponents(verticalLayout, verticalLayout1);
     	
     	setContent(horizontalLayout);
     	
