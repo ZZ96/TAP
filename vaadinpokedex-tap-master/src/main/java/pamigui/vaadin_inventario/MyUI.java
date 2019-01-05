@@ -260,14 +260,56 @@ public class MyUI extends UI {
         	addWindow(subWindow1);
         	
     	});
-    	
+    	Window subWindow3 = new Window("Producto details");
+        VerticalLayout subContent3 = new VerticalLayout();
+        
     	grid3.addColumn(Producto::getPrecio).setCaption("Beneficio");
     	grid3.addColumn(Producto::getFecha).setCaption("fecha");
     	FormLayout formLayout1 = new FormLayout();
     	Button buttonFabricar = new Button("Fabricar");
+    	Button MA = new Button("MA");
+    	Button flecha = new Button("Flecha");
     	formLayout1.addComponents( buttonFabricar); 
-    	
-    	
+    	buttonFabricar.addClickListener(e -> {
+        	//Inventario.getInstance().deleteProductoUno(selectedProducto);
+        	//(selectedProducto.getPrecio());
+        	removeWindow(subWindow1);
+        	addWindow(subWindow3);
+        	MA.addClickListener(ens ->{
+        		int bandera = 0;
+        		int count = 0;
+        		double sum = 0;
+        		for (int i = 0; i<Inventario.getInstance().getProducto().size(); i++) {
+	        		if (Inventario.getInstance().getProducto().get(i).getName().contains("a") == true)
+	        		{
+	        			bandera = 1;
+	        			count = i;
+	        		}else if (Inventario.getInstance().getProducto().get(i).getName().contains("m") == true && bandera == 1){
+	        			sum = Inventario.getInstance().getProducto().get(i).getPrecio() + Inventario.getInstance().getProducto().get(count).getPrecio();
+	        			Inventario.getInstance().deleteProductoUno(Inventario.getInstance().getProducto().get(i));
+	        			Inventario.getInstance().deleteProductoUno(Inventario.getInstance().getProducto().get(count));
+	        			Producto pe = new Producto("MA","MA",sum ,1);
+	            				//Double.parseDouble(textFieldprecio.getValue()),
+	            				//Integer.parseInt(textFieldUnidades.getValue())
+	            				//);
+	        			
+	        			if (Inventario.getInstance().getProducto().get(Inventario.getInstance().getProducto().size()-1).getName().contains("MA"))
+	        			{
+	        				//Inventario.getInstance().getProducto().get(Inventario.getInstance().getProducto().size()-1).aniadir;
+	        				Inventario.getInstance().aniadirUno(pe);
+	        			}
+	        			else
+	        				Inventario.getInstance().addProducto(pe);
+	        			grid.setItems(Inventario.getInstance().getProducto());
+	            		grid2.setItems(Inventario.getInstance().getProducto());
+	            		grid3.setItems(Inventario.getInstance().getProducto());
+	        		}		
+	        	}
+        	});
+        });
+    	subContent3.addComponents(MA, flecha);
+        subWindow3.center();
+        subWindow3.setContent(subContent3);
     	
     	
     	
