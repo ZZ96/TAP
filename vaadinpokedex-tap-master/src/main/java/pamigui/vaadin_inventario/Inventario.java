@@ -53,6 +53,12 @@ public class Inventario {
 	public List<Producto> getProducto() {
 		return inventario;
 	}
+	public void modificarProducto(Producto p, String number, String name, int precio) 
+	{
+		p.setNumber(number);
+		p.setName(name);
+		p.setPrecio(precio);
+	}
 	/*
 	public int buscarProducto(Producto p) {
 		p.g
@@ -114,7 +120,7 @@ public class Inventario {
 				System.out.println("Número de unidades totales del inventario: "+ cont);
 		}
 	}
-	
+	/*
 	public void modificarProducto(String nombre, String numero, String tipo, int unidades,int prod, ArrayList<Producto> auxiliar ) {
 		//int a= agenda.indexOf(auxiliar.get(contacto));
  		int ID= inventario.indexOf(auxiliar.get(prod)); // con esto cogemos el indice del contacto del array auxiliar que coincide con el de agenda
@@ -133,7 +139,7 @@ public class Inventario {
 		inventario.get(ID).setUnidades(unidades);
 		
 		
-}
+	}*/
 	
 
 

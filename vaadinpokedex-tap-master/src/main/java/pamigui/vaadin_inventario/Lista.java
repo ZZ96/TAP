@@ -16,7 +16,7 @@ public class Lista implements MetodoVisualizar{
 			System.out.println("- Producto Número " + i);
 			System.out.println("- Nombre: " + inventario.get(i).getName());
 			System.out.println("- Numero: " + inventario.get(i).getNumber());
-			System.out.println("- Tipo: " + inventario.get(i).getType());
+			System.out.println("- Tipo: " + inventario.get(i).getPrecio());
 			System.out.println("- Unidades: " + inventario.get(i).getUnidades());
 			System.out.println("------------------------");
 		}

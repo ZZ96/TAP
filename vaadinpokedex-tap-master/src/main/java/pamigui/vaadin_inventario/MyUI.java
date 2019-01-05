@@ -44,11 +44,16 @@ public class MyUI extends UI {
         
         Label labelNumber = new Label();
         Label labelName = new Label();
-        Label labelType = new Label();
+        Label labelprecio = new Label();
         Label labelUnidades = new Label();
         Button buttonDelete = new Button("Delete Producto");
         Button buttonDeleteUno = new Button("Borrar una unidad");
         Button buttonAniadirUno = new Button("Añadir una unidad");
+        Button buttonModificar = new Button("Modificar producto");
+        TextField textFieldNumber2 = new TextField("Number");
+    	TextField textFieldName2 = new TextField("Name");
+    	TextField textFieldprecio2 = new TextField("precio");
+        
         
         buttonDelete.addClickListener(e -> {
         	Inventario.getInstance().deleteProducto(selectedProducto, 1);
@@ -70,9 +75,20 @@ public class MyUI extends UI {
         	removeWindow(subWindow);
         	
         });
+        //OJO
+        buttonModificar.addClickListener(e -> {
+	        Inventario.getInstance().modificarProducto(selectedProducto, 
+	        		textFieldNumber2.getValue(), textFieldName2.getValue(), 
+	        		Integer.parseInt(textFieldprecio2.getValue()));
+	        grid.setItems(Inventario.getInstance().getProducto());
+	        removeWindow(subWindow);
         
+        	
+        });
       
-        subContent.addComponents(labelNumber, labelName, labelType, labelUnidades, buttonDelete, buttonDeleteUno, buttonAniadirUno);
+        subContent.addComponents(labelNumber, labelName, labelprecio, 
+        		labelUnidades, buttonDelete, buttonDeleteUno, buttonAniadirUno, 
+        		textFieldNumber2, textFieldName2, textFieldprecio2, buttonModificar);
         
         
         subWindow.center();
@@ -87,7 +103,9 @@ public class MyUI extends UI {
     	
     	grid.addColumn(Producto::getNumber).setCaption("Number");
     	grid.addColumn(Producto::getName).setCaption("Name");
-    	grid.addColumn(Producto::getType).setCaption("Type");
+    	grid.addColumn(Producto::getPrecio).setCaption("Precio en €");
+    	grid.addColumn(Producto::getPrecio).setCaption("Precio en $");
+    	grid.addColumn(Producto::getPrecio).setCaption("Precio en £");
     	grid.addColumn(Producto::getUnidades).setCaption("Unidades");
 
     	grid.setSelectionMode(SelectionMode.SINGLE);
@@ -99,7 +117,8 @@ public class MyUI extends UI {
         	// Notification.show("Value: " + event.getItem());
         	labelNumber.setValue(selectedProducto.getNumber());
         	labelName.setValue(selectedProducto.getName());
-        	labelType.setValue(selectedProducto.getType());
+        	labelprecio.setValue(String.valueOf(selectedProducto.getPrecio()));
+        	labelprecio.setValue(String.valueOf(selectedProducto.getPrecio()*1.12));
         	labelUnidades.setValue(String.valueOf(selectedProducto.getUnidades()));
         	
         	removeWindow(subWindow);
@@ -115,7 +134,7 @@ public class MyUI extends UI {
     	
     	TextField textFieldNumber = new TextField("Number");
     	TextField textFieldName = new TextField("Name");
-    	TextField textFieldType = new TextField("Type");
+    	TextField textFieldprecio = new TextField("Precio");
     	TextField textFieldUnidades = new TextField("Unidades");
     	Button buttonAddProducto = new Button("Añadir");
     	
@@ -125,7 +144,7 @@ public class MyUI extends UI {
     		Producto p = new Producto(
     				textFieldNumber.getValue(),
     				textFieldName.getValue(),
-    				textFieldType.getValue(),
+    				Integer.parseInt(textFieldprecio.getValue()),
     				Integer.parseInt(textFieldUnidades.getValue())
     				);
     		
@@ -133,7 +152,7 @@ public class MyUI extends UI {
     		
     		textFieldNumber.clear();
     		textFieldName.clear();
-    		textFieldType.clear();
+    		textFieldprecio.clear();
     		textFieldUnidades.clear();
     		
     		grid.setItems(Inventario.getInstance().getProducto());
@@ -151,7 +170,7 @@ public class MyUI extends UI {
     	formLayout.addComponents(
     			textFieldNumber, 
     			textFieldName, 
-    			textFieldType,
+    			textFieldprecio,
     			textFieldUnidades,
     			buttonAddProducto
     	);
