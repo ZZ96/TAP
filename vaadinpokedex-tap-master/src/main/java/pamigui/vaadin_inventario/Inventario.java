@@ -53,7 +53,7 @@ public class Inventario {
 	public List<Producto> getProducto() {
 		return inventario;
 	}
-	public void modificarProducto(Producto p, String number, String name, int precio) 
+	public void modificarProducto(Producto p, String number, String name, double precio) 
 	{
 		p.setNumber(number);
 		p.setName(name);

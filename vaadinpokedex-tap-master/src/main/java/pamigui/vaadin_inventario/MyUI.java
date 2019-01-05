@@ -46,14 +46,14 @@ public class MyUI extends UI {
         Label labelName = new Label();
         Label labelprecio = new Label();
         Label labelUnidades = new Label();
-        Button buttonDelete = new Button("Delete Producto");
+        Button buttonDelete = new Button("Borrar Producto");
         Button buttonDeleteUno = new Button("Borrar una unidad");
         Button buttonAniadirUno = new Button("Añadir una unidad");
         Button buttonModificar = new Button("Modificar producto");
         TextField textFieldNumber2 = new TextField("Number");
     	TextField textFieldName2 = new TextField("Name");
-    	TextField textFieldprecio2 = new TextField("precio");
-        
+    	TextField textFieldprecio2 = new TextField("Precio en €");
+    	Button buttonPrecio = new Button("Ver distintos precios");
         
         buttonDelete.addClickListener(e -> {
         	Inventario.getInstance().deleteProducto(selectedProducto, 1);
@@ -79,16 +79,37 @@ public class MyUI extends UI {
         buttonModificar.addClickListener(e -> {
 	        Inventario.getInstance().modificarProducto(selectedProducto, 
 	        		textFieldNumber2.getValue(), textFieldName2.getValue(), 
-	        		Integer.parseInt(textFieldprecio2.getValue()));
+	        		Double.parseDouble(textFieldprecio2.getValue()));
 	        grid.setItems(Inventario.getInstance().getProducto());
 	        removeWindow(subWindow);
         
         	
         });
+        
+        buttonPrecio.addClickListener(e -> {
+	        /*Inventario.getInstance().modificarProducto(selectedProducto, 
+	        		textFieldNumber2.getValue(), textFieldName2.getValue(), 
+	        		Double.parseDouble(textFieldprecio2.getValue()));
+	        grid.setItems(Inventario.getInstance().getProducto());*/
+	        //a = labelprecio.getValue();
+	        //Window subWindow2 = new Window("Precio");
+	        //HorizontalLayout subContent2 = new HorizontalLayout();
+	        
+	        Label labelLibras = new Label();
+	        Label labelDolares = new Label();
+	        Label labelEuros = new Label();
+	        labelLibras.setValue(String.valueOf(selectedProducto.getPrecio()*1.3) + "£");
+	        labelDolares.setValue(String.valueOf(selectedProducto.getPrecio()*1.12) + "$");
+	        labelEuros.setValue(String.valueOf(selectedProducto.getPrecio()) + "€");
+	        //removeWindow(subWindow);
+	        subContent.addComponents(labelLibras, labelDolares, labelEuros,labelprecio);
+	        //addWindow(subWindow2);
+        });
       
         subContent.addComponents(labelNumber, labelName, labelprecio, 
         		labelUnidades, buttonDelete, buttonDeleteUno, buttonAniadirUno, 
-        		textFieldNumber2, textFieldName2, textFieldprecio2, buttonModificar);
+        		textFieldNumber2, textFieldName2, textFieldprecio2, buttonModificar,
+        		buttonPrecio);
         
         
         subWindow.center();
@@ -104,8 +125,8 @@ public class MyUI extends UI {
     	grid.addColumn(Producto::getNumber).setCaption("Number");
     	grid.addColumn(Producto::getName).setCaption("Name");
     	grid.addColumn(Producto::getPrecio).setCaption("Precio en €");
-    	grid.addColumn(Producto::getPrecio).setCaption("Precio en $");
-    	grid.addColumn(Producto::getPrecio).setCaption("Precio en £");
+    	//grid.addColumn(Producto::getPrecio).setCaption("Precio en $");
+    	//grid.addColumn(Producto::getPrecio).setCaption("Precio en £");
     	grid.addColumn(Producto::getUnidades).setCaption("Unidades");
 
     	grid.setSelectionMode(SelectionMode.SINGLE);
@@ -118,7 +139,7 @@ public class MyUI extends UI {
         	labelNumber.setValue(selectedProducto.getNumber());
         	labelName.setValue(selectedProducto.getName());
         	labelprecio.setValue(String.valueOf(selectedProducto.getPrecio()));
-        	labelprecio.setValue(String.valueOf(selectedProducto.getPrecio()*1.12));
+        	//labelprecio.setValue(String.valueOf(selectedProducto.getPrecio()*1.12));
         	labelUnidades.setValue(String.valueOf(selectedProducto.getUnidades()));
         	
         	removeWindow(subWindow);
@@ -144,7 +165,7 @@ public class MyUI extends UI {
     		Producto p = new Producto(
     				textFieldNumber.getValue(),
     				textFieldName.getValue(),
-    				Integer.parseInt(textFieldprecio.getValue()),
+    				Double.parseDouble(textFieldprecio.getValue()),
     				Integer.parseInt(textFieldUnidades.getValue())
     				);
     		

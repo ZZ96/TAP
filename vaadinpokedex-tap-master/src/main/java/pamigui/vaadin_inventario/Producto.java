@@ -4,7 +4,7 @@ public class Producto {
 
 	private String name;
 	private String number;
-	private int precio;
+	private double precio;
 	private int unidades;
 	
 	public Producto(String name, String number) {
@@ -12,7 +12,7 @@ public class Producto {
 		this.name = name;
 		this.number = number;
 	}
-	public Producto(String number, String name, int precio, int unidades) {
+	public Producto(String number, String name, double precio, int unidades) {
 		super();
 		this.name = name;
 		this.number = number;
@@ -37,10 +37,10 @@ public class Producto {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(int precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 	
