@@ -48,7 +48,7 @@ public class MyUI extends UI {
         Label labelUnidades = new Label();
         Button buttonDelete = new Button("Delete Producto");
         Button buttonDeleteUno = new Button("Borrar una unidad");
-        Button buttonModificar = new Button("Modificar Producto");
+        Button buttonAniadirUno = new Button("Añadir una unidad");
         
         buttonDelete.addClickListener(e -> {
         	Inventario.getInstance().deleteProducto(selectedProducto, 1);
@@ -64,15 +64,15 @@ public class MyUI extends UI {
         	
         });
         //OJO
-        buttonDelete.addClickListener(e -> {
-        	Inventario.getInstance().deleteProducto(selectedProducto, 1);
+        buttonAniadirUno.addClickListener(e -> {
+        	Inventario.getInstance().aniadirUno(selectedProducto);
         	grid.setItems(Inventario.getInstance().getProducto());
         	removeWindow(subWindow);
         	
         });
         
       
-        subContent.addComponents(labelNumber, labelName, labelType, labelUnidades, buttonDelete, buttonDeleteUno);
+        subContent.addComponents(labelNumber, labelName, labelType, labelUnidades, buttonDelete, buttonDeleteUno, buttonAniadirUno);
         
         
         subWindow.center();

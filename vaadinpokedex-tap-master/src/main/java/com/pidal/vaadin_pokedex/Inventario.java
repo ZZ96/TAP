@@ -41,10 +41,14 @@ public class Inventario {
 			contadorUni--;
 			p.setUnidades(contadorUni);
 		}
-		//inventario.remove(p);
 	}
 	
-	
+	public void aniadirUno(Producto p)
+	{
+		int contadorUni=p.getUnidades();
+		contadorUni++;
+		p.setUnidades(contadorUni);
+	}
 	
 	public List<Producto> getProducto() {
 		return inventario;
