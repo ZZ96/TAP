@@ -304,32 +304,14 @@ public class MyUI extends UI {
 	        				Inventario.getInstance().addProducto(pe);
 	        			grid.setItems(Inventario.getInstance().getProducto());
 	            		grid2.setItems(Inventario.getInstance().getProducto());
-	            		grid3.setItems(Inventario.getInstance().getProducto());
-	        		}		
+	        		}
+	        		
 	        	}
         	});
         });
-    	subContent3.addComponents(MA, flecha);
+    	subContent3.addComponents(MA);
         subWindow3.center();
         subWindow3.setContent(subContent3);
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
     	
     	
     	
