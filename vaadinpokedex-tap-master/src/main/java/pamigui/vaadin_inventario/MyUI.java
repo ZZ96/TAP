@@ -280,11 +280,11 @@ public class MyUI extends UI {
         		int count = 0;
         		double sum = 0;
         		for (int i = 0; i<Inventario.getInstance().getProducto().size(); i++) {
-	        		if (Inventario.getInstance().getProducto().get(i).getName().contains("a") == true)
+	        		if (Inventario.getInstance().getProducto().get(i).getName().contains("A") == true)
 	        		{
 	        			bandera = 1;
 	        			count = i;
-	        		}else if (Inventario.getInstance().getProducto().get(i).getName().contains("m") == true && bandera == 1){
+	        		}else if (Inventario.getInstance().getProducto().get(i).getName().contains("M") == true && bandera == 1){
 	        			sum = Inventario.getInstance().getProducto().get(i).getPrecio() + Inventario.getInstance().getProducto().get(count).getPrecio();
 	        			Inventario.getInstance().deleteProductoUno(Inventario.getInstance().getProducto().get(i));
 	        			Inventario.getInstance().deleteProductoUno(Inventario.getInstance().getProducto().get(count));
@@ -295,8 +295,10 @@ public class MyUI extends UI {
 	        			
 	        			if (Inventario.getInstance().getProducto().get(Inventario.getInstance().getProducto().size()-1).getName().contains("MA"))
 	        			{
-	        				//Inventario.getInstance().getProducto().get(Inventario.getInstance().getProducto().size()-1).aniadir;
-	        				Inventario.getInstance().aniadirUno(pe);
+	        				Inventario.getInstance().getProducto().get(Inventario.getInstance().getProducto().size()-1).setUnidades(
+	        						Inventario.getInstance().getProducto().get(Inventario.getInstance().getProducto().size()-1).getUnidades()+1);
+	        				
+	        				//Inventario.getInstance().aniadirUno(pe);
 	        			}
 	        			else
 	        				Inventario.getInstance().addProducto(pe);

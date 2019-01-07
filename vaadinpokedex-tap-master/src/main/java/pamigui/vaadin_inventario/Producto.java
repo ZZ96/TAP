@@ -31,19 +31,20 @@ public class Producto {
 		return unidades;
 	}
 	public void setUnidades(int unidades) {
+		setPrecio_total(unidades, this.precio);
 		this.unidades = unidades;
 	}
 	public String getName() {
-		return name;
+		return name.toUpperCase();
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.toUpperCase();
 	}
 	public String getNumber() {
-		return number;
+		return number.toUpperCase();
 	}
 	public void setNumber(String number) {
-		this.number = number;
+		this.number = number.toUpperCase();
 	}
 	public double getPrecio() {
 		return precio;
