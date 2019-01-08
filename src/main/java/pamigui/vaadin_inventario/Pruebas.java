@@ -11,14 +11,6 @@ import org.junit.jupiter.api.Test;
 
 
 class Pruebas {
-	
-	/*@Before
-	public void limpiar() {
-		Inventario inventario= Inventario.getInstance();
-		inventario.vaciar();
-		
-	}
-	*/
 
 	@Test
 	public void aniadirProducto() {
