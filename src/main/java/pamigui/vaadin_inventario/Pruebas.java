@@ -1,4 +1,4 @@
-package pamigui.vaadin_inventario;
+/*package pamigui.vaadin_inventario;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,5 +62,6 @@ class Pruebas {
 		Assert.assertEquals(a, 1);
 		
 	}
-	*/
+	*//*
 }
+*/
