@@ -2,7 +2,9 @@ package pamigui.vaadin_inventario;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+//import org.junit.jupiter.api.Test;
 
 import junit.framework.Assert;
 
