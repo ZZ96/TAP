@@ -59,7 +59,7 @@ public class MyUI extends UI {
     	Button buttonPrecio = new Button("Ver distintos precios");
         
         buttonDelete.addClickListener(e -> {
-        	Inventario.getInstance().deleteProducto(selectedProducto, 1);
+        	Inventario.getInstance().deleteProducto(selectedProducto);
         	grid.setItems(Inventario.getInstance().getProducto());
         	removeWindow(subWindow);
         	

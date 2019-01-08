@@ -26,7 +26,7 @@ public class Inventario {
 		p.setPrecio_total(p.getUnidades(), p.getPrecio());
 	}
 	
-	public void deleteProducto(Producto p, int prod)
+	public void deleteProducto(Producto p)
 	{
 		inventario.remove(p);
 	}
@@ -61,5 +61,9 @@ public class Inventario {
 		p.setName(name);
 		p.setPrecio(precio);
 		p.setPrecio_total(p.getUnidades(), precio);
+	}
+	public void vaciar()
+	{
+		inventario.clear();
 	}
 }
